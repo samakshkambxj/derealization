@@ -59,7 +59,7 @@ class SettingsActivity : ComponentActivity() {
 }
 
 private val TITLES get() = mapOf("anim" to s(R.string.section_anim), "glass" to s(R.string.section_glass), "color" to s(R.string.section_color), "clocks" to s(R.string.section_clocks),
-    "depth" to s(R.string.section_depth), "widgets" to s(R.string.section_widgets), "unlock" to s(R.string.section_unlock), "home_dock" to s(R.string.section_home_dock), "home" to "derealization", "lock" to "derealization")
+    "depth" to s(R.string.section_depth), "widgets" to s(R.string.section_widgets), "unlock" to s(R.string.section_unlock), "home_dock" to s(R.string.section_home_dock), "profile" to s(R.string.profile_title), "home" to "derealization", "lock" to "derealization")
 
 /** Разделы хаба: ключ, название, пояснение. */
 private val HUB get() = mapOf(
@@ -68,6 +68,7 @@ private val HUB get() = mapOf(
         Triple("home_dock", s(R.string.section_home_dock), s(R.string.section_home_dock_hint)),
         Triple("glass", s(R.string.section_glass), s(R.string.section_glass_hint)),
         Triple("color", s(R.string.section_color), s(R.string.section_color_hint)),
+        Triple("profile", s(R.string.profile_title), s(R.string.profile_subtitle)),
     ),
     "lock" to listOf(
         Triple("clocks", s(R.string.section_clocks), s(R.string.section_clocks_hint)),
@@ -123,6 +124,7 @@ private fun SettingsPage(start: String, onBack: () -> Unit) {
                     section == "widgets" -> WidgetsTab()
                     section == "unlock" -> UnlockTab()
                     section == "home_dock" -> HomeTab()
+                    section == "profile" -> ProfileTab()
                     else -> AnimTab()
                 }
             }

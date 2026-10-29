@@ -296,6 +296,7 @@
     <string name="nav_opacity">Opacity</string>
     <string name="home_patched_waiting">Patched · waiting for restart</string>
     <string name="menu_settings">Settings</string>
+    <string name="menu_backup">Profiles &amp; Backup</string>
     <string name="menu_restart_systemui">Restart SystemUI</string>
     <string name="menu_reboot">Reboot</string>
     <string name="menu_unpatch">Unpatch</string>
@@ -348,4 +349,26 @@
     <string name="tile_brightness">Brightness</string>
     <string name="tile_volume">Volume</string>
     <string name="action_back">Back</string>
+
+    <!-- Profiles / Backup -->
+    <string name="profile_title">Profiles &amp; Backup</string>
+    <string name="profile_subtitle">Save and restore your entire derealization setup</string>
+    <string name="profile_hint">A profile captures all settings: animations, glass, colors, dock, clocks, depth, widgets, unlock. Create multiple profiles for different moods or devices.</string>
+    <string name="profile_create">Create profile</string>
+    <string name="profile_name_label">Profile name</string>
+    <string name="profile_empty">No profiles yet. Tap \"Create profile\" to save your current setup.</string>
+    <string name="profile_updated" formatted="true">Updated %1$s</string>
+    <string name="profile_applied" formatted="true">Applied \"%1$s\"</string>
+    <string name="profile_apply_failed">Failed to apply profile</string>
+    <string name="profile_export">Export to file</string>
+    <string name="profile_exported" formatted="true">Exported to %1$s (in Downloads)</string>
+    <string name="profile_export_failed">Export failed</string>
+    <string name="profile_import_section">Import from file</string>
+    <string name="profile_import">Import profile (.drp)</string>
+    <string name="profile_import_hint">Select a .drp file previously exported from derealization</string>
+    <string name="profile_imported" formatted="true">Imported \"%1$s\"</string>
+    <string name="profile_import_failed">Import failed — invalid or corrupted file</string>
+    <string name="profile_rename">Rename</string>
+    <string name="profile_delete">Delete</string>
+    <string name="profile_name_exists">A profile with this name already exists</string>
 </resources>

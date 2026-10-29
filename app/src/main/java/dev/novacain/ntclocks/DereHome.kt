@@ -216,6 +216,11 @@ internal fun DereHome() {
                     add(Triple(Glyph.STORE, ctx.getString(R.string.menu_store), true) to {
                         scope.launch(Dispatchers.IO) { Patcher.openStore(ctx) }
                     })
+                    add(Triple(Glyph.BACKUP, s(R.string.menu_backup), true) to {
+                        openWallpaperStyle(ctx)
+                        // The SettingsActivity will handle the "profile" section via intent extra
+                        // We can't easily deep-link to a specific tab from here, but the user will see the Profiles tab
+                    })
                     add(Triple(Glyph.RESTART, s(R.string.menu_restart_systemui), false) to {
                         fadeToBlack { withContext(Dispatchers.IO) { runCatching { Runtime.getRuntime().exec(arrayOf("su", "-c", "kill \$(pidof com.android.systemui)")).waitFor() } } }
                     })
@@ -341,7 +346,7 @@ private val StorePath by lazy {
     ).toPath()
 }
 
-private enum class Glyph { GEAR, STORE, RESTART, POWER, LOCK, INFO }
+private enum class Glyph { GEAR, STORE, BACKUP, RESTART, POWER, LOCK, INFO }
 
 @Composable
 private fun MenuRow(g: Glyph, title: String, chevron: Boolean, separator: Boolean, enabled: Boolean, onClick: () -> Unit) {
@@ -382,6 +387,20 @@ private fun DrawScope.drawGlyph(g: Glyph, c: Color, open: Boolean) {
             scale(k, k, Offset.Zero) {
                 drawPath(StorePath, c, style = Stroke(2.1f, join = androidx.compose.ui.graphics.StrokeJoin.Round))
             }
+        }
+        Glyph.BACKUP -> {
+            // облако со стрелкой вниз (бэкап/профиль)
+            val r = s * 0.35f; val cx = s / 2; val cy = s * 0.55f
+            drawArc(c, 180f, 180f, false, Offset(cx - r, cy - r), androidx.compose.ui.geometry.Size(2 * r, 2 * r), style = st)
+            drawLine(c, Offset(cx - r * 0.5f, cy), Offset(cx + r * 0.5f, cy), s * 0.12f, StrokeCap.Round)
+            val ax = cx; val ay = cy + r * 0.4f
+            val head = androidx.compose.ui.graphics.Path().apply {
+                moveTo(ax, ay)
+                lineTo(ax - s * 0.12f, ay - s * 0.2f)
+                lineTo(ax + s * 0.12f, ay - s * 0.2f)
+                close()
+            }
+            drawPath(head, c)
         }
         Glyph.RESTART -> {
             // ↻: дуга по часовой от 1 часа до ~11:30 (разрыв сверху), на конце — залитый треугольник по касательной
